@@ -1,18 +1,18 @@
 # echo-client
 
-This template should help get you started developing with Vue 3 in Vite.
+Client repo for the Echo App. It displays the notepad sync between all echoers to make the Echo App echo!
 
-## Recommended IDE Setup
+## Client Events
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- Emits
+  1. init -> a connection, with name and roomId (from url, or randomly generated)
+  2. \*echo -> sent whenever text is typed
+  3. disconnect -> this client left, that's it
+- Recieves
+  1. \*reverb -> recieves data and updates the notepad
+  2. joined -> new client joined the room
 
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+NOTE: \* marked events are the main heroes
 
 ## Project Setup
 
