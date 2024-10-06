@@ -15,7 +15,7 @@ export interface ClientToServerEvents {
 
 export interface ServerToClientEvents {
     [ServerEvents.REVERB]: (data: { text: string }) => void;
-    [ServerEvents.JOINED]: (data: { name: string }) => void;
+    [ServerEvents.JOINED]: (data: { name: string, members: string[] }) => void;
 }
 
 export type Events = ClientToServerEvents & ServerToClientEvents

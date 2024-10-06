@@ -16,7 +16,6 @@ const name = useName();
 store.name = name;
 store.id = socket.id;
 store.roomId = roomId;
-store.addMember(name);
 </script>
 
 <template>
