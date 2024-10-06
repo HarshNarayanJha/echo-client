@@ -15,7 +15,7 @@ export const useSocketStore = defineStore('socketStore', {
     members: [],
   }),
   getters: {
-    memebersButMe(): { name: string }[] {
+    membersButMe(): { name: string }[] {
       return this.members.filter(m => m.name != this.name)
     }
   },
@@ -24,13 +24,7 @@ export const useSocketStore = defineStore('socketStore', {
       this.members.push({ name })
     },
     setMembers(names: string[]) {
-      names.forEach(name => {
-        if (!this.hasMember(name)) {
-          this.addMember(name)
-        }
-      })
-
-      console.log("Setted", names)
+      this.members = names.map(name => ({ name }));
     },
     hasMember(name: string): boolean {
       return this.members.filter(m => m.name === name).length != 0
