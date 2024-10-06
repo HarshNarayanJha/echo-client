@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import Notepad from "@/components/Notepad.vue";
-import { uniqueNamesGenerator, type Config, adjectives, colors, animals, names } from "unique-names-generator";
 import { useSocketStore } from "@/stores/socketStore";
 import socket from "@/services/socket";
 import { useName } from "@/services/name";
