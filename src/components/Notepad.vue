@@ -12,6 +12,9 @@ socket.emit(ClientEvents.INIT, { name: store.name!, roomId: store.roomId! });
 
 socket.on(ServerEvents.JOINED, ({ name }) => {
   console.log("New Echoer", name, "joined!");
+  if (!store.hasMember(name)) {
+    store.addMember(name);
+  }
 });
 
 socket.on(ServerEvents.REVERB, ({ text }) => {

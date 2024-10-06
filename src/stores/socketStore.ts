@@ -18,6 +18,9 @@ export const useSocketStore = defineStore('socketStore', {
     addMember(name: string): void {
       this.members.push({ name })
     },
+    hasMember(name: string): boolean {
+      return this.members.filter(m => m.name === name).length != 0
+    },
     removeMember(name: string): void {
       this.members = this.members.filter(m => m.name != name)
     }
