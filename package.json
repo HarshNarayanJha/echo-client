@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@types/node": "^22.7.4",
+    "halfmoon": "^2.0.2",
     "nanoid": "^5.0.7",
     "pinia": "^2.2.4",
     "socket.io-client": "^4.8.0",
