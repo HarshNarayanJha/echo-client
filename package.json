@@ -11,7 +11,10 @@
     "type-check": "vue-tsc --build --force"
   },
   "dependencies": {
+    "nanoid": "^5.0.7",
+    "pinia": "^2.2.4",
     "socket.io-client": "^4.8.0",
+    "unique-names-generator": "^4.7.1",
     "vue": "^3.4.29",
     "vue-router": "^4.3.3"
   },
