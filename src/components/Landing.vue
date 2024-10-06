@@ -9,10 +9,10 @@ const store = useSocketStore();
 
 if (store.name && store.roomId) {
   socket.emit(ClientEvents.LEAVE, { name: store.name, roomId: store.roomId });
-  store.name = null;
-  store.roomId = null;
-  store.members = [];
-  store.id = null;
+  console.log("Emitted LEAVE")
+  store.name = null
+  store.members = []
+  store.roomId = null
 }
 
 socket.on("connect", () => {
