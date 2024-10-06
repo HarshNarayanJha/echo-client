@@ -35,14 +35,30 @@ const { membersButMe } = storeToRefs(store);
 </script>
 
 <template>
-  <p>Room {{ store.roomId }}</p>
-  <h1>Welcome {{ store.name }}</h1>
-  <h5>Other Echoers connected to this echo</h5>
-  <ul>
-    <li v-for="mem in membersButMe">{{ mem.name }}</li>
-  </ul>
+  <div class="notepad container-fluid mt-4">
+    <RouterLink to="/" class="btn btn-secondary mb-4" role="button">&Lt; Back</RouterLink>
+    <h1>Welcome Back, {{ store.name }}</h1>
+    <p>
+      Room ID: <span class="badge text-bg-success">{{ store.roomId }}</span>
+    </p>
+    <p>Share Notepad Url: {{ $route.fullPath }}</p>
 
-  <textarea name="text" id="text" v-model="note" @input="onType"></textarea>
+    <textarea rows="15" name="text" id="text" v-model="note" @input="onType"></textarea>
+  </div>
+  <hr class="w-75 ms-auto me-auto" />
+  <div class="container-fluid">
+    <p class="fs-5 fw-bold">Other Echoers connected to this notepad</p>
+    <ul>
+      <li v-for="mem in membersButMe">{{ mem.name }}</li>
+    </ul>
+  </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+
+textarea {
+  resize: vertical;
+  width: 100%;
+}
+
+</style>

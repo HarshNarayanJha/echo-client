@@ -7,7 +7,7 @@ const state = useSocketStore();
 
 <template>
   <nav id="navbar"
-    class="navbar navbar-expand-lg fixed-top"
+    class="navbar navbar-expand-lg"
     style="background-color: var(--bs-content-bg); border-bottom: var(--bs-border-width) solid var(--bs-content-border-color);">
     <div class="container">
       <RouterLink to="/" class="navbar-brand fw-bolder"> <span class="h2">Echo</span> </RouterLink>

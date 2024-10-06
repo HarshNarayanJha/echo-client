@@ -26,7 +26,7 @@ const roomId = nanoid(6);
 </script>
 
 <template>
-  <div class="landing d-flex flex-column justify-content-center align-items-center min-vh-100">
+  <div class="landing d-flex flex-column justify-content-center align-items-center min-vh-100 text-center">
     <h1>Welcome to Echo</h1>
     <p>Create a private notepad, which you can share with your friends and type in sync!</p>
 
