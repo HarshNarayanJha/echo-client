@@ -1,22 +1,27 @@
 <script setup lang="ts">
 import { nanoid } from "nanoid";
-import { uniqueNamesGenerator, type Config, adjectives, colors, animals, names } from "unique-names-generator";
+import { useSocketStore } from "@/stores/socketStore";
+import { storeToRefs } from "pinia";
+import socket from "@/services/socket";
+
+const store = useSocketStore();
+
+socket.on("connect", () => {
+  console.log("Connected to server", socket.id)
+  store.id = socket.id;
+});
+
+const { id } = storeToRefs(store);
 
 const roomId = nanoid(6);
-
-const nameConfig: Config = {
-  length: 2,
-  separator: " ",
-  style: "capital",
-  dictionaries: [adjectives, animals],
-};
-
-const name: string = uniqueNamesGenerator(nameConfig);
 </script>
 
 <template>
   <h1>Welcome to Echo</h1>
   <p>This app creates a private notepad, which you can share with your friends and type in sync!</p>
 
-  <RouterLink :to="{ name: 'room', params: { roomId } }"><button>Let's Start</button></RouterLink>
+  <div v-if="typeof id != 'string'">Connecting to the server...</div>
+  <div v-else>
+    <RouterLink :to="{ name: 'room', params: { roomId } }"><button>Let's Start</button></RouterLink>
+  </div>
 </template>

@@ -20,7 +20,8 @@ const router = createRouter({
     {
       path: '/:roomId',
       name: 'room',
-      component: () => import("@/views/NotepadView.vue")
+      component: () => import("@/views/NotepadView.vue"),
+      props: true
     }
   ]
 })
