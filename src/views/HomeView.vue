@@ -3,7 +3,7 @@ import Landing from "@/components/Landing.vue";
 </script>
 
 <template>
-  <main>
+  <main class="container">
     <Landing />
   </main>
 </template>
