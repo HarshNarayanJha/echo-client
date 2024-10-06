@@ -9,7 +9,7 @@ export enum ServerEvents {
 }
 
 export interface ClientToServerEvents {
-    [ClientEvents.INIT]: (data: { name: string, roomId: string | null }) => void;
+    [ClientEvents.INIT]: (data: { name: string, roomId: string }) => void;
     [ClientEvents.ECHO]: (data: { text: string }) => void;
 }
 

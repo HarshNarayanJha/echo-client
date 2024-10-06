@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import Notepad from "@/components/Notepad.vue"
+import Landing from "@/components/Landing.vue";
 </script>
 
 <template>
   <main>
-    <h1>Hello World</h1>
-    <Notepad />
+    <Landing />
   </main>
 </template>

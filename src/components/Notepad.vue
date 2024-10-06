@@ -1,18 +1,21 @@
 <script setup lang="ts">
 import socket from "@/services/socket";
-
 import { ref } from "vue";
+
+const { roomId } = defineProps<{
+  roomId: string;
+}>();
 
 const text = ref<string>("");
 
-socket.on("update", (data: string) => {
-  text.value += data
-});
-
+const onType = () => {
+  socket.emit("update", text.value);
+};
 </script>
 
 <template>
-  <textarea name="text" id="text" :value="text"></textarea>
+  <p>Room {{ roomId }}</p>
+  <textarea name="text" id="text" v-model="text" @keyup="onType"></textarea>
 </template>
 
 <style scoped></style>
