@@ -10,11 +10,14 @@ const note = ref<string>("");
 
 socket.emit(ClientEvents.INIT, { name: store.name!, roomId: store.roomId! });
 
-socket.on(ServerEvents.JOINED, ({ name }) => {
+socket.on(ServerEvents.JOINED, ({ name, members }) => {
   console.log("New Echoer", name, "joined!");
-  if (!store.hasMember(name)) {
-    store.addMember(name);
-  }
+  store.setMembers(members);
+});
+
+socket.on(ServerEvents.LEFT, ({ name, members }) => {
+  console.log("Bye Echoer!", name, "left.");
+  store.setMembers(members);
 });
 
 socket.on(ServerEvents.REVERB, ({ text }) => {
@@ -29,6 +32,11 @@ const onType = () => {
 <template>
   <p>Room {{ store.roomId }}</p>
   <h1>Welcome {{ store.name }}</h1>
+  <h5>Other Echoers connected to this echo</h5>
+  <ul>
+    <li v-for="mem in store.memebersButMe">{{ mem.name }}</li>
+  </ul>
+
   <textarea name="text" id="text" v-model="note" @keyup="onType"></textarea>
 </template>
 

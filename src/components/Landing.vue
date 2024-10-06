@@ -3,11 +3,20 @@ import { nanoid } from "nanoid";
 import { useSocketStore } from "@/stores/socketStore";
 import { storeToRefs } from "pinia";
 import socket from "@/services/socket";
+import { ClientEvents } from "@/types/events";
 
 const store = useSocketStore();
 
+if (store.name && store.roomId) {
+  socket.emit(ClientEvents.LEAVE, { name: store.name, roomId: store.roomId });
+  store.name = null;
+  store.roomId = null;
+  store.members = [];
+  store.id = null;
+}
+
 socket.on("connect", () => {
-  console.log("Connected to server", socket.id)
+  console.log("Connected to server", socket.id);
   store.id = socket.id;
 });
 

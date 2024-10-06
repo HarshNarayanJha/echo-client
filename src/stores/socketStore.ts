@@ -14,9 +14,23 @@ export const useSocketStore = defineStore('socketStore', {
     roomId: null,
     members: [],
   }),
+  getters: {
+    memebersButMe(): { name: string }[] {
+      return this.members.filter(m => m.name != this.name)
+    }
+  },
   actions: {
     addMember(name: string): void {
       this.members.push({ name })
+    },
+    setMembers(names: string[]) {
+      names.forEach(name => {
+        if (!this.hasMember(name)) {
+          this.addMember(name)
+        }
+      })
+
+      console.log("Setted", names)
     },
     hasMember(name: string): boolean {
       return this.members.filter(m => m.name === name).length != 0
