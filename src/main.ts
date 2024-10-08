@@ -6,7 +6,7 @@ import router from './router'
 import 'halfmoon/css/halfmoon.min.css'
 import 'halfmoon/css/cores/halfmoon.cores.css'
 
-import 'bootstrap/dist/js/bootstrap.min.js'
+import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import './themeHelper.js'
 

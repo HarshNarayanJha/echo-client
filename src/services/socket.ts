@@ -25,19 +25,29 @@ const useSocket = () => {
   socket.on(ServerEvents.JOINED, ({ name, members }) => {
     const store = useSocketStore()
 
-    console.log('New Echoer', name, 'joined!')
     store.setMembers(members)
 
     if (store.note) {
       socket.emit(ClientEvents.ECHO, { text: store.note })
     }
+
+    if (store.name === name) {
+      return
+    }
+
+    console.log('New Echoer', name, 'joined!')
   })
 
   socket.on(ServerEvents.LEFT, ({ name, members }) => {
     const store = useSocketStore()
 
-    console.log('Bye Echoer!', name, 'left.')
     store.setMembers(members)
+
+    if (store.name === name) {
+      return
+    }
+
+    console.log('Bye Echoer!', name, 'left.')
   })
 
   socket.on(ServerEvents.REVERB, ({ text }) => {
