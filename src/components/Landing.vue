@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { nanoid } from 'nanoid'
+import { customAlphabet } from 'nanoid'
 import { useSocketStore } from '@/stores/socketStore'
 import { storeToRefs } from 'pinia'
 
@@ -12,6 +12,7 @@ if (store.name && store.roomId) {
 }
 
 const { id } = storeToRefs(store)
+const nanoid = customAlphabet('abcdefghijklmnopqrstuvwxyz01234567890')
 const roomId = nanoid(6)
 
 const routeTo = {
