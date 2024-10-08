@@ -1,46 +1,46 @@
 <script setup lang="ts">
-import socket from "@/services/socket";
-import { RouterLink } from "vue-router";
-import { ClientEvents, ServerEvents } from "@/types/events";
-import { useSocketStore } from "@/stores/socketStore";
-import { ref } from "vue";
-import { storeToRefs } from "pinia";
+import socket from '@/services/socket'
+import { RouterLink } from 'vue-router'
+import { ClientEvents, ServerEvents } from '@/types/events'
+import { useSocketStore } from '@/stores/socketStore'
+import { ref } from 'vue'
+import { storeToRefs } from 'pinia'
 
-const store = useSocketStore();
+const store = useSocketStore()
 
-socket.emit(ClientEvents.INIT, { name: store.name!, roomId: store.roomId! });
+socket.emit(ClientEvents.INIT, { name: store.name!, roomId: store.roomId! })
 
 socket.on(ServerEvents.JOINED, ({ name, members }) => {
-  console.log("New Echoer", name, "joined!");
-  store.setMembers(members);
+  console.log('New Echoer', name, 'joined!')
+  store.setMembers(members)
   if (note.value) {
-    socket.emit(ClientEvents.ECHO, { text: note.value });
+    socket.emit(ClientEvents.ECHO, { text: note.value })
   }
 
   if (name === store.name) {
-    return;
+    return
   }
-});
+})
 
 socket.on(ServerEvents.LEFT, ({ name, members }) => {
-  console.log("Bye Echoer!", name, "left.");
-  store.setMembers(members);
+  console.log('Bye Echoer!', name, 'left.')
+  store.setMembers(members)
 
   if (name === store.name) {
-    return;
+    return
   }
-});
+})
 
 socket.on(ServerEvents.REVERB, ({ text }) => {
-  note.value = text;
-});
+  note.value = text
+})
 
 const onType = () => {
-  socket.emit(ClientEvents.ECHO, { text: note.value });
-};
+  socket.emit(ClientEvents.ECHO, { text: note.value })
+}
 
-const note = ref<string>("");
-const { membersButMe } = storeToRefs(store);
+const note = ref<string>('')
+const { membersButMe } = storeToRefs(store)
 </script>
 
 <template>
@@ -58,7 +58,9 @@ const { membersButMe } = storeToRefs(store);
   <div class="container-fluid">
     <p class="fs-5 fw-bold">Other Echoers connected to this notepad</p>
     <ul>
-      <li v-for="mem in membersButMe">{{ mem.name }}</li>
+      <li v-for="mem in membersButMe" :key="mem.name">
+        <span>{{ mem.name }}</span>
+      </li>
     </ul>
   </div>
 </template>

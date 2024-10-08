@@ -1,9 +1,9 @@
-import { defineStore } from "pinia";
+import { defineStore } from 'pinia'
 
 interface State {
-  name: string | null,
-  id: string | null | undefined,
-  roomId: string | null,
+  name: string | null
+  id: string | null | undefined
+  roomId: string | null
   members: { name: string }[]
 }
 
@@ -12,11 +12,11 @@ export const useSocketStore = defineStore('socketStore', {
     name: null,
     id: null,
     roomId: null,
-    members: [],
+    members: []
   }),
   getters: {
     membersButMe(): { name: string }[] {
-      return this.members.filter(m => m.name != this.name)
+      return this.members.filter((m) => m.name != this.name)
     }
   },
   actions: {
@@ -24,13 +24,13 @@ export const useSocketStore = defineStore('socketStore', {
       this.members.push({ name })
     },
     setMembers(names: string[]) {
-      this.members = names.map(name => ({ name }));
+      this.members = names.map((name) => ({ name }))
     },
     hasMember(name: string): boolean {
-      return this.members.filter(m => m.name === name).length != 0
+      return this.members.filter((m) => m.name === name).length != 0
     },
     removeMember(name: string): void {
-      this.members = this.members.filter(m => m.name != name)
+      this.members = this.members.filter((m) => m.name != name)
     }
   }
 })
