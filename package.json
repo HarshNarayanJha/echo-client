@@ -15,6 +15,7 @@
     "@types/bootstrap": "^5.2.10",
     "@types/node": "^22.7.4",
     "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3",
     "halfmoon": "^2.0.2",
     "nanoid": "^5.0.7",
     "pinia": "^2.2.4",
