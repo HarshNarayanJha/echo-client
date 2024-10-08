@@ -11,6 +11,7 @@
     "type-check": "vue-tsc --build --force"
   },
   "dependencies": {
+    "@popperjs/core": "^2.11.8",
     "@types/bootstrap": "^5.2.10",
     "@types/node": "^22.7.4",
     "bootstrap": "^5.3.3",

@@ -6,7 +6,7 @@ import router from './router'
 import 'halfmoon/css/halfmoon.min.css'
 import 'halfmoon/css/cores/halfmoon.cores.css'
 
-// import "bootstrap";
+import "bootstrap/dist/js/bootstrap.min.js";
 
 const app = createApp(App)
 
