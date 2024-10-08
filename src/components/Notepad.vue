@@ -1,46 +1,18 @@
 <script setup lang="ts">
-import socket from '@/services/socket'
 import { RouterLink } from 'vue-router'
-import { ClientEvents, ServerEvents } from '@/types/events'
 import { useSocketStore } from '@/stores/socketStore'
-import { ref } from 'vue'
 import { storeToRefs } from 'pinia'
+import { initEchoer, echoNote } from '@/services/socket'
 
 const store = useSocketStore()
 
-socket.emit(ClientEvents.INIT, { name: store.name!, roomId: store.roomId! })
+const { note, membersButMe } = storeToRefs(store)
 
-socket.on(ServerEvents.JOINED, ({ name, members }) => {
-  console.log('New Echoer', name, 'joined!')
-  store.setMembers(members)
-  if (note.value) {
-    socket.emit(ClientEvents.ECHO, { text: note.value })
-  }
-
-  if (name === store.name) {
-    return
-  }
-})
-
-socket.on(ServerEvents.LEFT, ({ name, members }) => {
-  console.log('Bye Echoer!', name, 'left.')
-  store.setMembers(members)
-
-  if (name === store.name) {
-    return
-  }
-})
-
-socket.on(ServerEvents.REVERB, ({ text }) => {
-  note.value = text
-})
+initEchoer()
 
 const onType = () => {
-  socket.emit(ClientEvents.ECHO, { text: note.value })
+  echoNote()
 }
-
-const note = ref<string>('')
-const { membersButMe } = storeToRefs(store)
 </script>
 
 <template>
