@@ -9,7 +9,7 @@ import {
 
 import { useSocketStore } from '@/stores/socketStore'
 
-import { showToast } from "@/utils/index"
+import { showToast } from '@/utils/index'
 
 const useSocket = () => {
   const SOCKET_SERVER_URL: string = import.meta.env.VITE_SERVER_URL || 'http://localhost:5000'

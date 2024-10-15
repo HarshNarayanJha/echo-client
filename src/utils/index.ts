@@ -2,7 +2,6 @@ import { createVNode, render } from 'vue'
 import Toast from '@/components/Toast.vue'
 
 export const showToast = (message: string, parent: HTMLElement) => {
-
   const vNode = createVNode(Toast, { message })
   const el = document.createElement('div')
   parent.appendChild(el)

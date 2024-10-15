@@ -5,7 +5,7 @@ interface State {
   id: string | null | undefined
   roomId: string | null
   members: { name: string }[]
-  note: string,
+  note: string
   toastContainer: HTMLElement | null
 }
 
