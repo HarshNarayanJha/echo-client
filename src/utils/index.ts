@@ -1,5 +1,4 @@
 import { createVNode, render } from 'vue'
-import { Toast as BSToast } from 'bootstrap'
 import Toast from '@/components/Toast.vue'
 
 export const showToast = (message: string, parent: HTMLElement) => {
@@ -9,7 +8,8 @@ export const showToast = (message: string, parent: HTMLElement) => {
   parent.appendChild(el)
   render(vNode, el)
 
-  const toast = BSToast.getOrCreateInstance(el.children[0])
+  // const toast = BSToast.getOrCreateInstance(el.children[0])
+  const toast = el.children[0]
 
   setTimeout(() => {
     if (el) {
@@ -18,5 +18,9 @@ export const showToast = (message: string, parent: HTMLElement) => {
     }
   }, 5000)
 
-  toast.show()
+  setTimeout(() => {
+    toast.classList.remove('show')
+  }, 3500)
+
+  toast.classList.add('show')
 }
