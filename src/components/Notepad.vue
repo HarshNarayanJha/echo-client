@@ -18,11 +18,25 @@ const onType = () => {
   echoNote()
 }
 
+const roomUrl = window.location.href
+
+const copyRoomUrl = () => {
+  navigator.clipboard.writeText(roomUrl)
+  alert('Copied To Clipboard')
+}
+
+const shareRoomUrl = () => {
+  if (navigator.canShare()) {
+    alert("Sharing... ")
+  }
+}
+
 onMounted(() => {
-  const tooltipTriggerList = document.querySelectorAll("[data-bs-toggle='tooltip']")
-  const tooltipList = [...tooltipTriggerList].map(
-    (tooltipTriggerEl) => new Tooltip(tooltipTriggerEl)
-  )
+  // BUG: Breaks Dropdowns
+  // const tooltipTriggerList = document.querySelectorAll("[data-bs-toggle=tooltip]")
+  // const tooltipList = [...tooltipTriggerList].map(
+  //   (tooltipTriggerEl) => new Tooltip(tooltipTriggerEl)
+  // )
 })
 </script>
 
@@ -36,23 +50,27 @@ onMounted(() => {
         <h1>Hello, {{ store.name }}</h1>
         <p>
           Room ID: <span class="badge text-bg-success">{{ store.roomId }}</span>
-          <button class="btn" data-bs-toggle="tooltip" title="Copy Room URL to Clipboard">
+          <button
+            class="btn"
+            data-bs-toggle="tooltip"
+            title="Copy Room URL to Clipboard"
+            @click="copyRoomUrl">
             <i class="bi bi-copy"></i>
           </button>
-          <button class="btn" data-bs-toggle="tooltip" title="Share Room URL">
+          <button class="btn" data-bs-toggle="tooltip" title="Share Room URL" @click="shareRoomUrl">
             <i class="bi bi-share-fill"></i>
           </button>
         </p>
       </div>
-      <div class="">
+      <div class="text-center">
         <qrcode-vue
-          :value="$route.fullPath"
+          :value="roomUrl"
           :size="125"
           :margin="1"
-          class="me-4"
+          class="me-2"
           background="#000000"
           foreground="#fff" />
-        <p>{{ $route.fullPath }}</p>
+        <p>{{ roomUrl }}</p>
       </div>
     </div>
 
