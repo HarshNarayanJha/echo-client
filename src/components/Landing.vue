@@ -25,16 +25,18 @@ const routeTo = {
 
 <template>
   <div
-    class="landing d-flex flex-column justify-content-center align-items-center min-vh-100 text-center">
+    class="landing d-flex flex-column justify-content-center align-items-center text-center">
     <h1 class="display-2">Welcome to Echo</h1>
     <p class="fs-5">
-      Create a private notepad, which you can share with your friends and type in sync!
+      Create a private notepad, which you can share with your friends and type in sync, and that for Free!
+      <br />
+      No data is logged or stored. Check it out, we are open source.
     </p>
 
     <div v-if="id === null">Connecting to the server...</div>
     <div v-else>
       <RouterLink :to="routeTo">
-        <button class="btn btn-info btn-lg fs-5 mt-4 px-4 py-2">Let's Start</button>
+        <button class="btn btn-info btn-lg fs-4 mt-4 px-5 py-2 fw-medium">Let's Start</button>
       </RouterLink>
     </div>
   </div>

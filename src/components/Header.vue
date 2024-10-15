@@ -1,10 +1,20 @@
 <script setup lang="ts">
-import ThemeSwitcher from './ThemeSwitcher.vue';
+import ThemeSwitcher from './ThemeSwitcher.vue'
 
 import { RouterLink } from 'vue-router'
 import { useSocketStore } from '@/stores/socketStore'
 
 const state = useSocketStore()
+
+import { onMounted } from 'vue'
+import { Tooltip } from 'bootstrap'
+
+onMounted(() => {
+  // const tooltipTriggerList = document.querySelectorAll("[data-bs-toggle='tooltip']")
+  // const tooltipList = [...tooltipTriggerList].map(
+  //   (tooltipTriggerEl) => new Tooltip(tooltipTriggerEl)
+  // )
+})
 </script>
 
 <template>
@@ -15,7 +25,7 @@ const state = useSocketStore()
       background-color: var(--bs-content-bg);
       border-bottom: var(--bs-border-width) solid var(--bs-content-border-color);
     ">
-    <div class="container">
+    <div :class="$router.currentRoute.value.path === '/' ? 'container' : 'container-fluid px-4'">
       <RouterLink to="/" class="navbar-brand fw-bolder"> <span class="h2">Echo</span> </RouterLink>
       <button
         class="navbar-toggler"
@@ -32,12 +42,28 @@ const state = useSocketStore()
           <li class="nav-item">
             <RouterLink to="/about" class="nav-link">About</RouterLink>
           </li>
+          <li
+            class="nav-item"
+            data-bs-toggle="tooltip"
+            title="Mail me echo-notepad@harshnj.is-a.dev"
+            data-bs-placement="bottom">
+            <a class="nav-link" href="mailto:echo-notepad@harshnj.is-a.dev">Contact</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link">{{ state.name }}</a>
           </li>
 
           <li class="nav-item dropdown">
             <ThemeSwitcher />
+          </li>
+
+          <li class="nav-item">
+            <a
+              href="https://github.com/HarshNarayanJha/echo-client"
+              class="nav-link"
+              target="_blank">
+              GitHub
+            </a>
           </li>
         </ul>
       </div>

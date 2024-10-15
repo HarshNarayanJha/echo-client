@@ -1,13 +1,15 @@
 <template>
   <button
-    class="btn btn-secondary py-2 px-0 px-lg-2 dropdown-toggle"
+    class="btn btn-secondary py-2 px-2 px-lg-2 dropdown-toggle"
     id="bd-theme"
     type="button"
     aria-expanded="false"
     data-bs-toggle="dropdown"
     data-bs-display="static"
     aria-label="Toggle theme (auto)">
-    <span class="badge position-absolute top-0 start-0 translate-middle rounded-pill bg-info p-1" id="bd-theme-dot">
+    <span
+      class="badge position-absolute top-0 start-0 translate-middle rounded-pill bg-info p-1"
+      id="bd-theme-dot">
       <span class="visually-hidden">New alerts</span>
     </span>
     <span class="me-2 theme-icon-active">
@@ -54,6 +56,10 @@
         Auto
         <i class="bi bi-check2 ms-auto d-none"></i>
       </button>
+    </li>
+    <hr class="dropdown-divider" />
+    <li class="dropdown-item-text">
+      <p>TIP: Use <kbd>SHIFT</kbd> + <kbd>D</kbd></p>
     </li>
   </ul>
 </template>
