@@ -5,7 +5,8 @@ interface State {
   id: string | null | undefined
   roomId: string | null
   members: { name: string }[]
-  note: string
+  note: string,
+  toastContainer: HTMLElement | null
 }
 
 export const useSocketStore = defineStore('socketStore', {
@@ -14,7 +15,8 @@ export const useSocketStore = defineStore('socketStore', {
     id: null,
     roomId: null,
     members: [],
-    note: ''
+    note: '',
+    toastContainer: null
   }),
   getters: {
     membersButMe(): { name: string }[] {

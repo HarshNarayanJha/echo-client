@@ -9,6 +9,8 @@ import {
 
 import { useSocketStore } from '@/stores/socketStore'
 
+import { showToast } from "@/utils/index"
+
 const useSocket = () => {
   const SOCKET_SERVER_URL: string = import.meta.env.VITE_SERVER_URL || 'http://localhost:5000'
 
@@ -40,6 +42,10 @@ const useSocket = () => {
     }
 
     console.log('New Echoer', name, 'joined!')
+
+    if (store.toastContainer) {
+      showToast(`${name} joined!`, store.toastContainer)
+    }
   })
 
   socket.on(ServerEvents.LEFT, ({ name, members }) => {
@@ -52,6 +58,10 @@ const useSocket = () => {
     }
 
     console.log('Bye Echoer!', name, 'left.')
+
+    if (store.toastContainer) {
+      showToast(`${name} left!`, store.toastContainer)
+    }
   })
 
   socket.on(ServerEvents.REVERB, ({ text }) => {
