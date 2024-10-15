@@ -7,7 +7,7 @@ import { useSocketStore } from '@/stores/socketStore'
 const state = useSocketStore()
 
 import { onMounted } from 'vue'
-import { Tooltip } from 'bootstrap'
+// import { Tooltip } from 'bootstrap'
 
 onMounted(() => {
   // const tooltipTriggerList = document.querySelectorAll("[data-bs-toggle='tooltip']")
@@ -62,7 +62,7 @@ onMounted(() => {
               href="https://github.com/HarshNarayanJha/echo-client"
               class="nav-link"
               target="_blank">
-              GitHub
+              <i class="bi bi-github h4"></i>
             </a>
           </li>
         </ul>

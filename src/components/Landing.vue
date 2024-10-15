@@ -24,11 +24,11 @@ const routeTo = {
 </script>
 
 <template>
-  <div
-    class="landing d-flex flex-column justify-content-center align-items-center text-center">
+  <div class="landing d-flex flex-column justify-content-center align-items-center text-center">
     <h1 class="display-2">Welcome to Echo</h1>
     <p class="fs-5">
-      Create a private notepad, which you can share with your friends and type in sync, and that for Free!
+      Create a private notepad, which you can share with your friends and type in sync, and that for
+      Free!
       <br />
       No data is logged or stored. Check it out, we are open source.
     </p>

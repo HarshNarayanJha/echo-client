@@ -5,7 +5,7 @@ import QrcodeVue from 'qrcode.vue'
 import { useSocketStore } from '@/stores/socketStore'
 import { initEchoer, echoNote } from '@/services/socket'
 
-import { Tooltip } from 'bootstrap'
+// import { Tooltip } from 'bootstrap'
 import { onMounted } from 'vue'
 
 const store = useSocketStore()
@@ -27,7 +27,7 @@ const copyRoomUrl = () => {
 
 const shareRoomUrl = () => {
   if (navigator.canShare()) {
-    alert("Sharing... ")
+    alert('Sharing... ')
   }
 }
 

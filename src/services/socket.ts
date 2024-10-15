@@ -1,6 +1,11 @@
 import { io } from 'socket.io-client'
 import { Socket } from 'socket.io-client'
-import { ClientEvents, ServerEvents, type ClientToServerEvents, type ServerToClientEvents } from '@/types/events'
+import {
+  ClientEvents,
+  ServerEvents,
+  type ClientToServerEvents,
+  type ServerToClientEvents
+} from '@/types/events'
 
 import { useSocketStore } from '@/stores/socketStore'
 
@@ -10,7 +15,6 @@ const useSocket = () => {
   const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io(SOCKET_SERVER_URL, {
     transports: ['websocket']
   })
-
 
   socket.on('connect', () => {
     console.log('Connected to server', socket.id)
@@ -72,7 +76,7 @@ const useSocket = () => {
   const leaveRoom = () => {
     const store = useSocketStore()
     if (!store.name || !store.roomId) {
-      return;
+      return
     }
 
     socket.emit(ClientEvents.LEAVE, { name: store.name, roomId: store.roomId })
