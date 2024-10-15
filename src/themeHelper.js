@@ -10,6 +10,9 @@
   const getStoredTheme = () => localStorage.getItem('theme')
   const setStoredTheme = (theme) => localStorage.setItem('theme', theme)
 
+  const getThemeUsed = () => localStorage.getItem('themeUsed')
+  const setThemeUsed = (used) => localStorage.setItem('themeUsed', used)
+
   const getPreferredTheme = () => {
     const storedTheme = getStoredTheme()
     if (storedTheme) {
@@ -34,6 +37,13 @@
 
     if (!themeSwitcher) {
       return
+    }
+
+    const themeUsed = getThemeUsed()
+
+    if (themeUsed) {
+      const themeSwitcherDot = document.getElementById('bd-theme-dot')
+      themeSwitcherDot.classList.add('d-none')
     }
 
     const themeSwitcherText = document.querySelector('#bd-theme-text')
@@ -78,6 +88,7 @@
         const theme = toggle.getAttribute('data-bs-theme-value')
         setStoredTheme(theme)
         setTheme(theme)
+        setThemeUsed(true)
         showActiveTheme(theme, true)
       })
     })
